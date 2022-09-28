@@ -12,7 +12,7 @@ PIN_LIGHT_FAN = 19
 ### Create, enable and start services
 - Copy ```cooler_script.sevices``` file.
   ```bash
-  cd home_remote
+  cd cooler_script
   sudo cp linux-services/cooler_script.service /etc/systemd/system/cooler_script.service
   ```
 - Customize path to ```main.py``` and the ```WorkingDirectory```.
