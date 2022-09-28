@@ -1,0 +1,10 @@
+[Unit]
+Description=cooler_script
+
+[Service]
+Type=simple
+WorkingDirectory=[PATH to cooler_script directory]
+ExecStart=/usr/bin/python3 [PATH to cooler_script directory]/main.py
+
+[Install]
+WantedBy=multi-user.target
