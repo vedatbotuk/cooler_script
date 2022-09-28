@@ -10,11 +10,11 @@ GPIO.setwarnings(False)
 PIN_STRONG_FAN = 21  # Pin, der zum Transistor fuehrt
 PIN_LIGHT_FAN = 19
 SLEEP_TIME = 2  # Alle wie viel Sekunden die Temperatur ueberprueft wird
-# FUN_TIME		= 30
+
 STRONG_FAN = 55  # Ab welcher CPU Temperatur der Luefter sich drehen soll
 LIGHT_FAN = 45
 
-starter = 0
+STARTER = 0
 
 
 def get_cpu_temperature():
@@ -43,15 +43,8 @@ def fan_low_off():
     GPIO.output(PIN_LIGHT_FAN, False)
 
 
-# def fan_low_starter():
-#     GPIO.output(IMPULS_PIN_HIGH, True)
-#     sleep(0.5)
-#     fan_high_off()
-#     fan_low_on()
-
-
 def main():
-    global starter
+    global STARTER
     GPIO.setup(PIN_STRONG_FAN, GPIO.OUT)
     GPIO.setup(PIN_LIGHT_FAN, GPIO.OUT)
     GPIO.output(PIN_STRONG_FAN, False)
@@ -68,13 +61,13 @@ def main():
         if cpu_temp < LIGHT_FAN:
             fan_low_off()
             fan_high_off()
-            starter = 0
+            STARTER = 0
 
-        if starter == 0:
+        if STARTER == 0:
             if (cpu_temp >= LIGHT_FAN) and (cpu_temp < STRONG_FAN):
                 fan_high_off()
                 fan_low_on()
-                starter = 1
+                STARTER = 1
 
         if cpu_temp >= STRONG_FAN:
             fan_low_off()
